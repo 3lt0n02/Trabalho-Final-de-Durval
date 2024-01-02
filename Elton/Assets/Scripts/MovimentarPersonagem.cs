@@ -1,27 +1,29 @@
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class MovimentarPersonagem : MonoBehaviour
 {
     [Header("Variáveis de Movimento")] public float velocidade;
     public Rigidbody2D rb2D;
-    private float _direcao;
-    private Vector3 _olharDireita;
-    private Vector3 _olharEsquerda;
+    private float direcao;
+    private Vector3 olharDireita;
+    private Vector3 olharEsquerda;
 
     [Header("Variáveis de Pulo")] public float forcaDoPulo;
     public Transform detectorDeChao;
     public LayerMask oQueEhChao;
     public bool estaNoChao;
-    [FormerlySerializedAs("_animator")] [SerializeField] private Animator animator;
+    [SerializeField] private Animator _animator;
 
     [Header("Variáveis de Ataque")] public Transform pontoDeAtaque;
-    //public float alcanceDeAtaque = 0.5f;
-    //public LayerMask _Os_inimigos;
-    private bool _atacando;
+    public float alcanceDeAtaque = 0.5f;
+    public LayerMask _Os_inimigos;
+    private bool atacando = false;
     public float duracaoDoAtaque = 0.16f;
-    private float _tempoDecorrido;
-    //public int danoDoPlayer = 100;
+    private float tempoDecorrido;
+    public int danoDoPlayer = 100;
+    private float danoPadrao = 100f;
+    private float danoAtual;
+
 
 
     [Header("Controle De Áudio")] 
@@ -38,10 +40,11 @@ public class MovimentarPersonagem : MonoBehaviour
 
     private void Start()
     {
-        animator.SetBool("Ataque", false);
-        _olharDireita = transform.localScale;
-        _olharEsquerda = transform.localScale;
-        _olharEsquerda.x = _olharEsquerda.x * -1;
+        danoAtual = danoPadrao;
+        _animator.SetBool("Ataque", false);
+        olharDireita = transform.localScale;
+        olharEsquerda = transform.localScale;
+        olharEsquerda.x = olharEsquerda.x * -1;
         rb2D = GetComponent<Rigidbody2D>();
     }
 
@@ -55,12 +58,12 @@ public class MovimentarPersonagem : MonoBehaviour
 
     void Movimento()
     {
-        _direcao = Input.GetAxis("Horizontal");
-        rb2D.velocity = new Vector2(_direcao * velocidade, rb2D.velocity.y);
+        direcao = Input.GetAxis("Horizontal");
+        rb2D.velocity = new Vector2(direcao * velocidade, rb2D.velocity.y);
 
-        if (_direcao != 0 && estaNoChao)
+        if (direcao != 0 && estaNoChao)
         {
-            animator.SetBool("andando", true);
+            _animator.SetBool("andando", true);
 
             if (!audioSourceMovimento.isPlaying)
             {
@@ -68,20 +71,19 @@ public class MovimentarPersonagem : MonoBehaviour
                 audioSourceMovimento.Play();
             }
         }
-        
         else
         {
-            audioSourceMovimento.Stop();
-            animator.SetBool("andando", false);
+             audioSourceMovimento.Stop();
+            _animator.SetBool("andando", false);
         }
 
-        if (_direcao > 0)
+        if (direcao > 0)
         {
-            transform.localScale = _olharDireita;
+            transform.localScale = olharDireita;
         }
-        else if (_direcao < 0)
+        else if (direcao < 0)
         {
-            transform.localScale = _olharEsquerda;
+            transform.localScale = olharEsquerda;
         }
 
     }
@@ -95,13 +97,13 @@ public class MovimentarPersonagem : MonoBehaviour
             audioSourceJump.Play();
         }
 
-        animator.SetBool("pulando", !estaNoChao);
+        _animator.SetBool("pulando", !estaNoChao);
         
     }
 
     void ControleDeAtaque()
     {
-        if (Input.GetKeyDown(KeyCode.W) && !_atacando)
+        if (Input.GetKeyDown(KeyCode.W) && !atacando)
         {
             AtivarAtaque();
             audioSourceAttack.clip = somAttack;
@@ -109,9 +111,9 @@ public class MovimentarPersonagem : MonoBehaviour
             
         }
 
-        _tempoDecorrido += Time.deltaTime;
+        tempoDecorrido += Time.deltaTime;
 
-        if (_atacando && _tempoDecorrido >= duracaoDoAtaque)
+        if (atacando && tempoDecorrido >= duracaoDoAtaque)
         {
             DesativarAtaque();
         }
@@ -120,15 +122,15 @@ public class MovimentarPersonagem : MonoBehaviour
     // ReSharper disable Unity.PerformanceAnalysis
     void AtivarAtaque()
     {
-        _atacando = true;
-        animator.SetBool("Ataque", true);
-        _tempoDecorrido = 0f;
+        atacando = true;
+        _animator.SetBool("Ataque", true);
+        tempoDecorrido = 0f;
     }
 
     void DesativarAtaque()
     {
-        _atacando = false;
-        animator.SetBool("Ataque", false);
+        atacando = false;
+        _animator.SetBool("Ataque", false);
     }
    
 
