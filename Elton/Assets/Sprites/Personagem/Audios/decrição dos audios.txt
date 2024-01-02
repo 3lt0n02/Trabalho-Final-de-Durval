@@ -1,0 +1,26 @@
+audio background:
+
+foi utilizado o site beep box para criar duas faixas de musida (Flauta e Flauta 2) depois coloquei no audacity para noramlizar os audios e alterá
+o tom e a velocidade, depois recotei uma das faixas para criar um loop e coloquei a outra faixa com complemetar.
+________________________________________________________
+audio de passos:
+
+baixei o audio base no site freesounds e depois recotei as pastes que queria utilizar do audio original e alterei o tom para baixo (-10,00)
+
+________________________________________________________
+auido de pulo: 
+
+baixei o audio base no site freesounds e recortei as partes que não queria utilizar deixando a penas as partes achei interresante para o audio, após isso alterei tom para deixalo mais agudo e
+mudei a velocidade para deixalo mais rapido.
+
+________________________________________________________
+audio coletar itens:
+
+após escolher o audio no site freesounds recortei o inicio do audio e alteira o tom deixando-o mais agudo mantive a mesma velocidade e o mesmo tempo do audio original.
+
+________________________________________________________
+audio de attack:
+
+no audio para o ataque recortei um trecho e mudei sua velocidade e tempo para aumentar o audios depois mudei o tom para deixa-lo mais grave.
+
+
