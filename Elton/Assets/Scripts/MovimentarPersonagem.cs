@@ -36,6 +36,8 @@ public class MovimentarPersonagem : MonoBehaviour
     public AudioSource audioSourceAttack;
     public AudioClip somAttack;
     
+    public AudioSource audioSourceMoeda;
+    public AudioClip somDestruido;
 
 
     private void Start()
@@ -131,6 +133,22 @@ public class MovimentarPersonagem : MonoBehaviour
     {
         atacando = false;
         _animator.SetBool("Ataque", false);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Coin"))
+        {
+            TocarSomDestruido();
+        }
+    }
+    private void TocarSomDestruido()
+    {
+        if (audioSourceMoeda != null && somDestruido != null)
+        {
+            audioSourceMoeda.clip = somDestruido;
+            audioSourceMoeda.Play();
+        }
     }
    
 
