@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SairDoJogo : MonoBehaviour
 {
-   public SairDoJogo()
+   public void saida()
    {
       Application.Quit();
    }
