@@ -984,6 +984,7 @@ GameObject:
   - component: {fileID: 937189528}
   - component: {fileID: 937189527}
   - component: {fileID: 937189526}
+  - component: {fileID: 937189529}
   m_Layer: 5
   m_Name: SAIDA
   m_TagString: Untagged
@@ -1008,8 +1009,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -2.600006, y: -1.8999939}
-  m_SizeDelta: {x: 106.9902, y: 30}
+  m_AnchoredPosition: {x: -4.700012, y: -4.200012}
+  m_SizeDelta: {x: 210.6825, y: 54.9464}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &937189526
 MonoBehaviour:
@@ -1054,7 +1055,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 937189527}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 937189529}
+        m_TargetAssemblyTypeName: SairDoJogo, Assembly-CSharp
+        m_MethodName: saida
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &937189527
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1093,6 +1106,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 937189524}
   m_CullTransparentMesh: 1
+--- !u!114 &937189529
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 937189524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb30602350ffd3f44a36154fb68b0cd6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1059582283
 GameObject:
   m_ObjectHideFlags: 0
@@ -1122,7 +1147,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 5c1cf64806eb2984780d9f6244de8fd5, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.1
+  m_Volume: 0.3
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1291,8 +1316,8 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 0
   m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PlaneDistance: 50
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
